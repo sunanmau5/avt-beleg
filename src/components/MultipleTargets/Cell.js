@@ -2,21 +2,21 @@ import React, { memo } from 'react'
 import { useDrop } from 'react-dnd'
 
 const style = {
-  height: '12rem',
-  width: '12rem',
-  marginRight: '1.5rem',
-  marginBottom: '1.5rem',
+  height: '8rem',
+  width: '8rem',
   color: 'white',
   padding: '1rem',
   textAlign: 'center',
   fontSize: '1rem',
   lineHeight: 'normal',
   float: 'left',
+  border: '1px solid rgba(0, 0, 0, 0.5)',
 }
 
-export const Dustbin = memo(({
+export const Cell = memo(({
   accept,
   lastDroppedItem,
+  audioFile,
   onDrop,
 }) => {
   const [{ isOver, canDrop }, drop] = useDrop({
@@ -37,13 +37,12 @@ export const Dustbin = memo(({
   }
 
   return (
-    <div ref={drop} role="Dustbin" style={{ ...style, backgroundColor }}>
-      {isActive
-        ? 'Release to drop'
-        : `This dustbin accepts: ${accept.join(', ')}`}
-
+    <div ref={drop} role="Cell" style={{ ...style, backgroundColor }}>
       {lastDroppedItem && (
-        <p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>
+        <>
+          <p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>
+          <p>Audio src: {audioFile}</p>
+        </>
       )}
     </div>
   )

@@ -1,5 +1,7 @@
 export const ItemTypes = {
-	FOOD: 'food',
-	GLASS: 'glass',
-	PAPER: 'paper',
+	BEACH: 'beach',
+	BIRDS: 'birds',
+	FIRE: 'fire',
+	RAIN: 'rain',
+	WIND: 'wind',
 }
