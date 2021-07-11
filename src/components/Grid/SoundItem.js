@@ -2,22 +2,20 @@ import React, { memo } from 'react'
 import { useDrag } from 'react-dnd'
 
 const style = {
-  border: '1px solid gray',
+  border: '1px solid #4B5563',
   borderRadius: '8px',
-  backgroundColor: '#222',
+  backgroundColor: '#4B5563',
   color: 'white',
   padding: '0.5rem 1rem',
-  marginRight: '1.5rem',
-  marginBottom: '1.5rem',
+  margin: '1rem 0.5rem',
   cursor: 'move',
-  float: 'left',
 }
 
-export const SoundItem = memo(({ name, type, file, isDropped, complexityIndex, volumeIndex }) => {
+export const SoundItem = memo(({ name, type, file, isDropped }) => {
   const [{ opacity }, drag] = useDrag(
     () => ({
       type,
-      item: { name },
+      item: { name, file },
       collect: (monitor) => ({
         opacity: monitor.isDragging() ? 0.4 : 1,
       }),
@@ -26,7 +24,7 @@ export const SoundItem = memo(({ name, type, file, isDropped, complexityIndex, v
   )
 
   return (
-    <div ref={drag} role="SoundItem" style={{ ...style, opacity }}>
+    <div ref={drag} style={{ ...style, opacity }}>
       {name}
     </div>
   )
