@@ -33,7 +33,7 @@ export const Cell = memo(({
     }),
   })
 
-  const playSound = useCallback(() => <ReactHowler src={audioSrc} playing={true} loop={true} />, [audioSrc])
+  const playSound = useCallback(() => <ReactHowler src={audioSrc} playing={true} loop={true} volume={volume} />, [audioSrc, volume])
 
   const isActive = isOver && canDrop
   let backgroundColor = '#1F2937'

@@ -27,8 +27,8 @@ export const Container = memo(() => {
   const handleDrop = useCallback(
     (index, item) => {
       const { name, file } = item
-      const complexity = index % 4
-      const volume = Math.abs(Math.floor(index / 4) - 3)
+      const complexity = index % 4 + 1  // Complexity range from 1-4
+      const volume = Math.abs(Math.floor(index / 4) - 4)
       setDroppedBoxNames(
         update(droppedBoxNames, name ? { $push: [name] } : { $push: [] }),
       )
@@ -39,7 +39,7 @@ export const Container = memo(() => {
               $set: name,
             },
             audioSrc: {
-              $set: file[complexity],
+              $set: file[complexity - 1], // Complexity index range from 0-3
             },
             volume: {
               $set: volume,
