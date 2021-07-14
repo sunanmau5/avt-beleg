@@ -1,10 +1,17 @@
 import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Container } from './components/Grid/Container';
+import './app.css'
+
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div className="wrapper">
+        <Container></Container>
+      </div>
+    </DndProvider>
   );
 }
 
