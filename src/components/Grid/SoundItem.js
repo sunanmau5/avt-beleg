@@ -11,11 +11,11 @@ const style = {
   cursor: 'move',
 }
 
-export const SoundItem = memo(({ name, type, file, isDropped }) => {
+export const SoundItem = memo(({ name, type, isDropped }) => {
   const [{ opacity }, drag] = useDrag(
     () => ({
       type,
-      item: { name, file },
+      item: { name, type },
       collect: (monitor) => ({
         opacity: monitor.isDragging() ? 0.4 : 1,
       }),

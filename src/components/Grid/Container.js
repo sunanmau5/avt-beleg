@@ -11,11 +11,11 @@ export const Container = memo(() => {
   const [cells, setCells] = useState(initialData)
 
   const [boxes] = useState([
-    { name: 'Birds', type: ItemTypes.BIRDS, file: ['sound/birds/birds_A.ogg', 'sound/birds/birds_B.ogg', 'sound/birds/birds_C.ogg', 'sound/birds/birds_D.ogg'] },
-    { name: 'Beach', type: ItemTypes.BEACH, file: ['sound/beach/beach_A.ogg', 'sound/beach/beach_B.ogg', 'sound/beach/beach_C.ogg', 'sound/beach/beach_D.ogg'] },
-    { name: 'Fire', type: ItemTypes.FIRE, file: ['sound/fire/fire_A.ogg', 'sound/fire/fire_B.ogg', 'sound/fire/fire_C.ogg', 'sound/fire/fire_D.ogg'] },
-    { name: 'Rain', type: ItemTypes.RAIN, file: ['sound/rain/rain_A.ogg', 'sound/rain/rain_B.ogg', 'sound/rain/rain_C.ogg', 'sound/rain/rain_D.ogg'] },
-    { name: 'Wind', type: ItemTypes.WIND, file: ['sound/wind/wind_A.ogg', 'sound/wind/wind_B.ogg', 'sound/wind/wind_C.ogg', 'sound/wind/wind_D.ogg'] },
+    { name: 'Birds', type: ItemTypes.BIRDS },
+    { name: 'Beach', type: ItemTypes.BEACH },
+    { name: 'Fire', type: ItemTypes.FIRE },
+    { name: 'Rain', type: ItemTypes.RAIN },
+    { name: 'Wind', type: ItemTypes.WIND },
   ])
 
   const [droppedBoxNames, setDroppedBoxNames] = useState([])
@@ -26,9 +26,12 @@ export const Container = memo(() => {
 
   const handleDrop = useCallback(
     (index, item) => {
-      const { name, file } = item
+      const { name, type } = item
       const complexity = index % 4 + 1  // Complexity range from 1-4
       const volume = Math.abs(Math.floor(index / 4) - 4)
+      console.log("type in ContainerDrop ",type)
+      console.log("index", index)
+
       setDroppedBoxNames(
         update(droppedBoxNames, name ? { $push: [name] } : { $push: [] }),
       )
@@ -38,8 +41,8 @@ export const Container = memo(() => {
             lastDroppedItem: {
               $set: name,
             },
-            audioSrc: {
-              $set: file[complexity - 1], // Complexity index range from 0-3
+            type: {
+              $set: type,
             },
             volume: {
               $set: volume,
@@ -62,24 +65,24 @@ export const Container = memo(() => {
   return (
     <div style={{ maxWidth: '40.5rem' }}>
       <div style={{ overflow: 'hidden', clear: 'both' }}>
-        {cells.map(({ accepts, lastDroppedItem, audioSrc, volume }, index) => (
+        {cells.map(({ accepts, lastDroppedItem, audioSrc, type, volume }, index) => (
           <Cell
             accept={accepts}
             lastDroppedItem={lastDroppedItem}
             audioSrc={audioSrc}
             volume={volume}
             onDrop={(item) => handleDrop(index, item)}
+            type={type}
             key={index}
           />
         ))}
       </div>
 
       <div style={soundItemStyle}>
-        {boxes.map(({ name, type, file }, index) => (
+        {boxes.map(({ name, type }, index) => (
           <SoundItem
             name={name}
             type={type}
-            file={file}
             isDropped={isDropped(name)}
             key={index}
           />
