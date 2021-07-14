@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from 'react'
 import { useDrop } from 'react-dnd'
 import ReactHowler from 'react-howler'
+import { SoundItem } from './SoundItem'
 
 const style = {
   display: 'flex',
@@ -22,6 +23,7 @@ export const Cell = memo(({
   lastDroppedItem,
   audioSrc,
   volume,
+  type,
   onDrop,
 }) => {
   const [{ isOver, canDrop }, drop] = useDrop({
@@ -45,14 +47,12 @@ export const Cell = memo(({
 
   return (
     <div ref={drop} style={{ ...style, backgroundColor }}>
-      {lastDroppedItem && (
-        <span>Last dropped: {lastDroppedItem}</span>
-      )}
       {audioSrc && (
-        <>
-          <span>Volume: {volume}</span>
-          <span>Audio src: {audioSrc}</span>
-        </>
+        <SoundItem
+          name={lastDroppedItem}
+          type={type}
+          file={audioSrc}
+        />
       )}
       {audioSrc && playSound()}
     </div>

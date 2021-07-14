@@ -18,20 +18,11 @@ export const Container = memo(() => {
     { name: 'Wind', type: ItemTypes.WIND, file: ['sound/wind/wind_A.ogg', 'sound/wind/wind_B.ogg', 'sound/wind/wind_C.ogg', 'sound/wind/wind_D.ogg'] },
   ])
 
-  const [droppedBoxNames, setDroppedBoxNames] = useState([])
-
-  function isDropped(boxName) {
-    return droppedBoxNames.indexOf(boxName) > -1
-  }
-
   const handleDrop = useCallback(
     (index, item) => {
-      const { name, file } = item
-      const complexity = index % 4 + 1  // Complexity range from 1-4
+      const { name, type, file } = item
+      const complexity = index % 4
       const volume = Math.abs(Math.floor(index / 4) - 4)
-      setDroppedBoxNames(
-        update(droppedBoxNames, name ? { $push: [name] } : { $push: [] }),
-      )
       setCells(
         update(cells, {
           [index]: {
@@ -39,17 +30,20 @@ export const Container = memo(() => {
               $set: name,
             },
             audioSrc: {
-              $set: file[complexity - 1], // Complexity index range from 0-3
+              $set: file[complexity], // Complexity index range from 0-3
             },
             volume: {
               $set: volume,
-            }
+            },
+            type: {
+              $set: type,
+            },
           },
         }),
       )
-      console.log(`${name} dropped on volume ${volume} and complexity ${complexity}`)
+      console.log(`${name} dropped on volume ${volume} and complexity ${complexity + 1}`)
     },
-    [droppedBoxNames, cells],
+    [cells],
   )
 
   const soundItemStyle = {
@@ -62,14 +56,15 @@ export const Container = memo(() => {
   return (
     <div style={{ maxWidth: '40.5rem' }}>
       <div style={{ overflow: 'hidden', clear: 'both' }}>
-        {cells.map(({ accepts, lastDroppedItem, audioSrc, volume }, index) => (
+        {cells.map(({ accepts, lastDroppedItem, audioSrc, volume, type }, index) => (
           <Cell
+            key={index}
             accept={accepts}
             lastDroppedItem={lastDroppedItem}
             audioSrc={audioSrc}
             volume={volume}
+            type={type}
             onDrop={(item) => handleDrop(index, item)}
-            key={index}
           />
         ))}
       </div>
@@ -80,7 +75,6 @@ export const Container = memo(() => {
             name={name}
             type={type}
             file={file}
-            isDropped={isDropped(name)}
             key={index}
           />
         ))}
