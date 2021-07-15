@@ -1,6 +1,6 @@
 import update from 'immutability-helper'
 import { memo, useCallback, useState } from 'react'
-import { initialData } from '../../Presets'
+import { initialData, beachCampfire, heavyRain } from '../../presets/Presets'
 import { ItemTypes } from '../../types/ItemTypes'
 import { PrimaryButton } from '../Button/Button'
 import { Cell } from '../Cell/Cell'
@@ -9,6 +9,7 @@ import './grid.css'
 
 export const Grid = memo(() => {
 
+  const [presets, setPresets] = useState([beachCampfire, heavyRain])
   const [cells, setCells] = useState(initialData)
 
   const [boxes] = useState([
@@ -22,7 +23,7 @@ export const Grid = memo(() => {
   const handleDrop = useCallback(
     (index, item) => {
       const { name, type, file } = item
-      const complexity = index % 4
+      const complexity = index % 4 + 1
       const volume = Math.abs(Math.floor(index / 4) - 4)
       setCells(
         update(cells, {
@@ -87,7 +88,11 @@ export const Grid = memo(() => {
       </div>
 
       <div className='buttons'>
-        <PrimaryButton onClick={() => setCells(initialData)} />
+        {presets.map((preset, index) => (
+          <PrimaryButton bgColor='#2563EB' onClick={() => setCells(preset)}>Preset {index + 1}</PrimaryButton>
+        ))}
+        <PrimaryButton onClick={() => setCells(initialData)}>Reset</PrimaryButton>
+        <PrimaryButton bgColor='#059669' onClick={() => setPresets([...presets, cells])}>Save Preset</PrimaryButton>
       </div>
     </div>
   )

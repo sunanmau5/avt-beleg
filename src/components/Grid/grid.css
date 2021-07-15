@@ -3,6 +3,7 @@
 }
 
 .grid {
+  border-radius: 20px;
   overflow: hidden;
   clear: both;
 }

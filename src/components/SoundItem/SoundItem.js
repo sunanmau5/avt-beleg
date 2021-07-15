@@ -22,7 +22,7 @@ export const SoundItem = memo(({ itemIndex, name, type, file, onMoveItem }) => {
 
   return (
     <div className='sound-item' ref={drag} style={{ opacity }}>
-      {itemIndex && <span style={{ marginRight: '0.5rem' }}>{itemIndex}.</span>}
+      {itemIndex >= 0 && <span style={{ marginRight: '0.5rem' }}>{itemIndex}.</span>}
       {name}
     </div>
   )
