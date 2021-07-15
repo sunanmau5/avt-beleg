@@ -11,7 +11,7 @@ const style = {
   cursor: 'move',
 }
 
-export const SoundItem = memo(({ name, type, file }) => {
+export const SoundItem = memo(({ itemIndex, name, type, file, onMoveItem }) => {
   const [{ opacity }, drag] = useDrag(
     () => ({
       type,
@@ -19,12 +19,19 @@ export const SoundItem = memo(({ name, type, file }) => {
       collect: (monitor) => ({
         opacity: monitor.isDragging() ? 0.4 : 1,
       }),
+      end: (item, monitor) => {
+        const dropResult = monitor.getDropResult()
+        if (item && dropResult) {
+          onMoveItem(itemIndex, item)
+        }
+      }
     }),
     [name, type],
   )
 
   return (
     <div ref={drag} style={{ ...style, opacity }}>
+      {itemIndex && <span style={{ marginRight: '0.5rem' }}>{itemIndex}.</span>}
       {name}
     </div>
   )

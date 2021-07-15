@@ -19,12 +19,15 @@ const style = {
 }
 
 export const Cell = memo(({
+  itemIndex,
   accept,
   lastDroppedItem,
-  audioSrc,
-  volume,
   type,
+  file,
+  volume,
+  complexity,
   onDrop,
+  moveItem,
 }) => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept,
@@ -35,7 +38,7 @@ export const Cell = memo(({
     }),
   })
 
-  const playSound = useCallback(() => <ReactHowler src={audioSrc} playing={true} loop={true} volume={volume} />, [audioSrc, volume])
+  const playSound = useCallback(() => <ReactHowler src={file[complexity]} playing={true} loop={true} volume={volume} />, [file, volume, complexity])
 
   const isActive = isOver && canDrop
   let backgroundColor = '#1F2937'
@@ -47,14 +50,14 @@ export const Cell = memo(({
 
   return (
     <div ref={drop} style={{ ...style, backgroundColor }}>
-      {audioSrc && (
-        <SoundItem
-          name={lastDroppedItem}
-          type={type}
-          file={audioSrc}
-        />
-      )}
-      {audioSrc && playSound()}
+      {file && <SoundItem
+        itemIndex={itemIndex}
+        name={lastDroppedItem}
+        type={type}
+        file={file}
+        onMoveItem={moveItem}
+      />}
+      {file && playSound()}
     </div>
   )
 })

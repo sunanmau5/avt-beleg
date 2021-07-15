@@ -26,25 +26,33 @@ export const Container = memo(() => {
       setCells(
         update(cells, {
           [index]: {
-            lastDroppedItem: {
-              $set: name,
-            },
-            audioSrc: {
-              $set: file[complexity], // Complexity index range from 0-3
-            },
-            volume: {
-              $set: volume,
-            },
-            type: {
-              $set: type,
-            },
+            lastDroppedItem: { $set: name },
+            type: { $set: type },
+            file: { $set: file },
+            volume: { $set: volume },
+            complexity: { $set: complexity },
           },
-        }),
+        })
       )
       console.log(`${name} dropped on volume ${volume} and complexity ${complexity + 1}`)
     },
     [cells],
   )
+
+  const removeItem = (itemIndex, item) => {
+    setCells(
+      update(cells, {
+        [itemIndex]: {
+          lastDroppedItem: { $set: null },
+          type: { $set: null },
+          file: { $set: null },
+          volume: { $set: 0 },
+          complexity: { $set: 0 },
+        },
+      }),
+    )
+    console.log(`${item.name} with index ${itemIndex} was removed`)
+  }
 
   const soundItemStyle = {
     display: 'flex',
@@ -56,15 +64,18 @@ export const Container = memo(() => {
   return (
     <div style={{ maxWidth: '40.5rem' }}>
       <div style={{ overflow: 'hidden', clear: 'both' }}>
-        {cells.map(({ accepts, lastDroppedItem, audioSrc, volume, type }, index) => (
+        {cells.map(({ accepts, lastDroppedItem, type, file, volume, complexity }, index) => (
           <Cell
             key={index}
+            itemIndex={index}
             accept={accepts}
             lastDroppedItem={lastDroppedItem}
-            audioSrc={audioSrc}
-            volume={volume}
             type={type}
+            file={file}
+            volume={volume}
+            complexity={complexity}
             onDrop={(item) => handleDrop(index, item)}
+            moveItem={removeItem}
           />
         ))}
       </div>
@@ -72,10 +83,11 @@ export const Container = memo(() => {
       <div style={soundItemStyle}>
         {boxes.map(({ name, type, file }, index) => (
           <SoundItem
+            key={index}
             name={name}
             type={type}
             file={file}
-            key={index}
+            onMoveItem={() => { }}
           />
         ))}
       </div>
