@@ -1,12 +1,13 @@
 import update from 'immutability-helper'
 import { memo, useCallback, useState } from 'react'
-import { Cell } from './Cell'
-import { initialData } from './InitialData'
-import { ItemTypes } from './ItemTypes'
-import { ResetButton } from './ResetButton'
-import { SoundItem } from './SoundItem'
+import { initialData } from '../../Presets'
+import { ItemTypes } from '../../types/ItemTypes'
+import { PrimaryButton } from '../Button/Button'
+import { Cell } from '../Cell/Cell'
+import { SoundItem } from '../SoundItem/SoundItem'
+import './grid.css'
 
-export const Container = memo(() => {
+export const Grid = memo(() => {
 
   const [cells, setCells] = useState(initialData)
 
@@ -54,16 +55,9 @@ export const Container = memo(() => {
     console.log(`${item.name} with index ${itemIndex} was removed`)
   }
 
-  const soundItemStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    clear: 'both',
-  }
-
   return (
-    <div style={{ maxWidth: '40.5rem' }}>
-      <div style={{ overflow: 'hidden', clear: 'both' }}>
+    <div className='container'>
+      <div className='grid'>
         {cells.map(({ accepts, lastDroppedItem, type, file, volume, complexity }, index) => (
           <Cell
             key={index}
@@ -80,7 +74,7 @@ export const Container = memo(() => {
         ))}
       </div>
 
-      <div style={soundItemStyle}>
+      <div className='sound-items'>
         {boxes.map(({ name, type, file }, index) => (
           <SoundItem
             key={index}
@@ -92,8 +86,8 @@ export const Container = memo(() => {
         ))}
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ResetButton initialCells={initialData} setCells={setCells} />
+      <div className='buttons'>
+        <PrimaryButton onClick={() => setCells(initialData)} />
       </div>
     </div>
   )

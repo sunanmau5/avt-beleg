@@ -1,4 +1,4 @@
-import { ItemTypes } from './ItemTypes'
+import { ItemTypes } from './types/ItemTypes'
 
 export const initialData = [
   {

@@ -1,15 +1,6 @@
 import React, { memo } from 'react'
 import { useDrag } from 'react-dnd'
-
-const style = {
-  border: '1px solid #4B5563',
-  borderRadius: '8px',
-  backgroundColor: '#4B5563',
-  color: 'white',
-  padding: '0.5rem 1rem',
-  margin: '1rem 0.5rem',
-  cursor: 'move',
-}
+import './soundItem.css'
 
 export const SoundItem = memo(({ itemIndex, name, type, file, onMoveItem }) => {
   const [{ opacity }, drag] = useDrag(
@@ -30,7 +21,7 @@ export const SoundItem = memo(({ itemIndex, name, type, file, onMoveItem }) => {
   )
 
   return (
-    <div ref={drag} style={{ ...style, opacity }}>
+    <div className='sound-item' ref={drag} style={{ opacity }}>
       {itemIndex && <span style={{ marginRight: '0.5rem' }}>{itemIndex}.</span>}
       {name}
     </div>

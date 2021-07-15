@@ -1,22 +1,8 @@
 import React, { memo, useCallback } from 'react'
 import { useDrop } from 'react-dnd'
 import ReactHowler from 'react-howler'
-import { SoundItem } from './SoundItem'
-
-const style = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '8rem',
-  width: '8rem',
-  color: 'white',
-  padding: '1rem',
-  fontSize: '1rem',
-  lineHeight: 'normal',
-  float: 'left',
-  border: '1px solid rgba(0, 0, 0, 0.5)',
-}
+import { SoundItem } from '../SoundItem/SoundItem'
+import './cell.css'
 
 export const Cell = memo(({
   itemIndex,
@@ -49,7 +35,7 @@ export const Cell = memo(({
   }
 
   return (
-    <div ref={drop} style={{ ...style, backgroundColor }}>
+    <div className='cell' ref={drop} style={{ backgroundColor }}>
       {file && <SoundItem
         itemIndex={itemIndex}
         name={lastDroppedItem}
