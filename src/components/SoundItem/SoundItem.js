@@ -2,28 +2,21 @@ import React, { memo } from 'react'
 import { useDrag } from 'react-dnd'
 import './soundItem.css'
 
-export const SoundItem = memo(({ itemIndex, name, type, file, onMoveItem }) => {
-  const [{ opacity }, drag] = useDrag(
+export const SoundItem = memo(({ icon, type, file }) => {
+  const [{ isDragging }, drag] = useDrag(
     () => ({
       type,
-      item: { name, type, file },
+      item: { icon, type, file },
       collect: (monitor) => ({
-        opacity: monitor.isDragging() ? 0.4 : 1,
+        isDragging: monitor.isDragging()
       }),
-      end: (item, monitor) => {
-        const dropResult = monitor.getDropResult()
-        if (item && dropResult) {
-          onMoveItem(itemIndex, item)
-        }
-      }
     }),
-    [name, type],
+    [icon, type],
   )
 
   return (
-    <div className='sound-item' ref={drag} style={{ opacity }}>
-      {itemIndex >= 0 && <span style={{ marginRight: '0.5rem' }}>{itemIndex}.</span>}
-      {name}
+    <div className='sound-item' ref={drag} style={{ opacity: isDragging ? 0.4 : 1 }}>
+      <img src={icon} alt="icon" width="40" height="40"/>
     </div>
   )
 })

@@ -3,6 +3,7 @@
 }
 
 .grid {
+  position: relative;
   border-radius: 20px;
   overflow: hidden;
   clear: both;
@@ -19,4 +20,51 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.label-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.label {
+  position: absolute;
+  font-size: 14;
+  color: white;
+}
+
+.top {
+  top: 0;
+  margin-top: 0.5rem;
+}
+
+.right {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  margin-right: 1rem;
+}
+
+.bottom {
+  bottom: 0;
+  margin-bottom: 0.5rem;
+}
+
+.left {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  margin-left: 1rem;
+}
+
+.preset-container {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: right;
+}
+
+.preset-table {  
+  display: flex; 
+  flex-direction: column; 
+  justify-content: right;
 }
