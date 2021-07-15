@@ -9,7 +9,6 @@ import './grid.css'
 
 export const Grid = memo(() => {
 
-
   const [presets, setPresets] = useState([beachCampfire, heavyRain])
   const [cells, setCells] = useState(initialData)
   const [isPlaying, setPlaying] = useState(false)
@@ -38,14 +37,28 @@ export const Grid = memo(() => {
           },
         })
       )
-      console.log(`${type} dropped on volume ${volume} and complexity ${complexity + 1}`)
+      console.log(`${type} dropped on volume ${volume} and complexity ${complexity}`)
     },
     [cells],
   )
 
+  const removeItem = (index) => {
+    setCells(
+      update(cells, {
+        [index]: {
+          icon: { $set: null },
+          type: { $set: null },
+          file: { $set: null },
+          volume: { $set: 0 },
+          complexity: { $set: 0 },
+        },
+      })
+    )
+  }
+
   return (
-    <>
-      <div className='container'>
+    <div className='container'>
+      <div className='grid-wrapper'>
         <div className='grid'>
           <span className='label-wrapper'>
             <span className='label top'>Loud</span>
@@ -56,6 +69,7 @@ export const Grid = memo(() => {
           {cells.map(({ accepts, icon, type, file, volume, complexity }, index) => (
             <Cell
               key={index}
+              cellIndex={index}
               accept={accepts}
               icon={icon}
               type={type}
@@ -64,6 +78,7 @@ export const Grid = memo(() => {
               complexity={complexity}
               onDrop={(item) => handleDrop(index, item)}
               isPlaying={isPlaying}
+              onDoubleClick={() => removeItem(index)}
             />
           ))}
         </div>
@@ -93,6 +108,6 @@ export const Grid = memo(() => {
           <PrimaryButton key={index} bgColor='#2563EB' onClick={() => setCells(preset)}>Preset {index + 1}</PrimaryButton>
         ))}
       </div>
-    </>
+    </div>
   )
 })

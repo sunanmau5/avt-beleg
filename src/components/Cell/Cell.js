@@ -13,8 +13,8 @@ export const Cell = memo(
     volume,
     complexity,
     onDrop,
-    moveItem,
     isPlaying,
+    onDoubleClick,
   }) => {
     const [{ isOver, canDrop }, drop] = useDrop({
       accept,
@@ -46,13 +46,12 @@ export const Cell = memo(
     }
 
     return (
-      <div className="cell" ref={drop} style={{ backgroundColor }}>
+      <div className="cell" ref={drop} style={{ backgroundColor }} onDoubleClick={onDoubleClick}>
         {file && (
           <SoundItem
             icon={icon}
             type={type}
             file={file}
-            onMoveItem={moveItem}
           />
         )}
         {file && playSound()}
