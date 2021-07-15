@@ -8,8 +8,8 @@ import { Grid } from './components/Grid/Grid';
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="wrapper">
-        <Grid></Grid>
+      <div className="app">
+        <Grid />
       </div>
     </DndProvider>
   );
