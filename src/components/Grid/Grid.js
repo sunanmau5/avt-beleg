@@ -1,6 +1,6 @@
 import update from 'immutability-helper'
 import { memo, useCallback, useState } from 'react'
-import { initialData, beachCampfire, heavyRain } from '../../presets/Presets'
+import { beachCampfire, heavyRain, initialData } from '../../presets/Presets'
 import { ItemTypes } from '../../types/ItemTypes'
 import { PrimaryButton } from '../Button/Button'
 import { Cell } from '../Cell/Cell'
@@ -89,10 +89,11 @@ export const Grid = memo(() => {
 
       <div className='buttons'>
         {presets.map((preset, index) => (
-          <PrimaryButton bgColor='#2563EB' onClick={() => setCells(preset)}>Preset {index + 1}</PrimaryButton>
+          <PrimaryButton key={index} bgColor='#2563EB' onClick={() => setCells(preset)}>Preset {index + 1}</PrimaryButton>
         ))}
         <PrimaryButton onClick={() => setCells(initialData)}>Reset</PrimaryButton>
         <PrimaryButton bgColor='#059669' onClick={() => setPresets([...presets, cells])}>Save Preset</PrimaryButton>
+        <PrimaryButton onClick={() => setPresets([beachCampfire, heavyRain])}>Delete Presets</PrimaryButton>
       </div>
     </div>
   )
