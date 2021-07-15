@@ -7,7 +7,7 @@ import "./cell.css";
 export const Cell = memo(
   ({
     accept,
-    lastDroppedItem,
+    icon,
     type,
     file,
     volume,
@@ -49,7 +49,7 @@ export const Cell = memo(
       <div className="cell" ref={drop} style={{ backgroundColor }}>
         {file && (
           <SoundItem
-            icon={lastDroppedItem}
+            icon={icon}
             type={type}
             file={file}
             onMoveItem={moveItem}

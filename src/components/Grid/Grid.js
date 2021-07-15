@@ -30,7 +30,7 @@ export const Grid = memo(() => {
       setCells(
         update(cells, {
           [index]: {
-            lastDroppedItem: { $set: icon },
+            icon: { $set: icon },
             type: { $set: type },
             file: { $set: file },
             volume: { $set: volume },
@@ -53,11 +53,11 @@ export const Grid = memo(() => {
             <span className='label left'>Simple</span>
             <span className='label right'>Complex</span>
           </span>
-          {cells.map(({ accepts, lastDroppedItem, type, file, volume, complexity }, index) => (
+          {cells.map(({ accepts, icon, type, file, volume, complexity }, index) => (
             <Cell
               key={index}
               accept={accepts}
-              lastDroppedItem={lastDroppedItem}
+              icon={icon}
               type={type}
               file={file}
               volume={volume}
