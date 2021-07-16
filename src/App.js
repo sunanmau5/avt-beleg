@@ -3,12 +3,15 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import './app.css';
 import { Grid } from './components/Grid/Grid';
+import { Noise} from "./components/Noises/Noise";
 
+let audioCtx = new AudioContext();
 
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="app">
+        <Noise audioCtx={audioCtx} type={"pink"}/>
         <Grid />
       </div>
     </DndProvider>
