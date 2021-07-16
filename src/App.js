@@ -1,15 +1,16 @@
 import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { Container } from './components/Grid/Container';
-import './app.css'
-
+import './app.css';
+import { Grid } from './components/Grid/Grid';
+import { Noise} from "./components/Noises/Noise";
 
 function App() {
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="wrapper">
-        <Container></Container>
+      <div className="app">
+        {/* <Noise audioCtx={audioCtx} type={"brown"}/> */}
+        <Grid />
       </div>
     </DndProvider>
   );
