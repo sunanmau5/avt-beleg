@@ -7,11 +7,7 @@ import "./cell.css";
 export const Cell = memo(
   ({
     accept,
-    icon,
-    type,
-    file,
-    volume,
-    complexity,
+    soundItems,
     onDrop,
     isPlaying,
     onDoubleClick,
@@ -25,17 +21,18 @@ export const Cell = memo(
       }),
     });
 
-    const playSound = useCallback(
-      () => (
-        <ReactHowler
+    const playSound = useCallback((soundItems) => (
+      soundItems.map((soundItem, index) => {
+        const { file, volume, complexity } = soundItem
+        return <ReactHowler
+          key={index}
           src={file[complexity - 1]}
           playing={isPlaying}
           loop={true}
           volume={volume}
         />
-      ),
-      [file, volume, complexity, isPlaying]
-    );
+      })
+    ), [isPlaying])
 
     const isActive = isOver && canDrop;
     let backgroundColor = "#1F2937";
@@ -47,14 +44,15 @@ export const Cell = memo(
 
     return (
       <div className="cell" ref={drop} style={{ backgroundColor }} onDoubleClick={onDoubleClick}>
-        {file && (
-          <SoundItem
+        {soundItems.length > 0 && soundItems.map(({ icon, type, file }, index) => {
+          return <SoundItem
+            key={index}
             icon={icon}
             type={type}
             file={file}
           />
-        )}
-        {file && playSound()}
+        })}
+        {soundItems.length > 0 && playSound(soundItems)}
       </div>
     );
   }

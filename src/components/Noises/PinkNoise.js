@@ -1,13 +1,16 @@
 import React from 'react'
+import { PrimaryButton } from '../Button/Button'
+import { NoiseVolume } from "./NoiseVolume";
 
-export const PinkNoise = ({ audioCtx }) => {
-    let isPlaying = false;
+export const PinkNoise = ({ audioCtx, isPlaying }) => {
+    let isOn = false;
 
     let PinkNoiseSource;
+    let gain;
 
     const createNoise = () => {
         let out = audioCtx.destination;
-        let gain = audioCtx.createGain();
+        gain = audioCtx.createGain();
         const buffer = audioCtx.createBuffer(
             1,
             audioCtx.sampleRate * 1,
@@ -31,28 +34,32 @@ export const PinkNoise = ({ audioCtx }) => {
 
         PinkNoiseSource = audioCtx.createBufferSource();
         PinkNoiseSource.buffer = buffer;
+        PinkNoiseSource.loop = true;
         gain.gain.setValueAtTime(0.02, 0);
         PinkNoiseSource.connect(gain);
         gain.connect(out);
     }
 
-    const play = () => {
-        if (!isPlaying) {
-            isPlaying = true;
+    const handleClick = () => {
+        if (isOn) {
+            isOn = false;
+            PinkNoiseSource.stop()
+        } else {
+            isOn = true;
             createNoise();
-            PinkNoiseSource.start();
+            PinkNoiseSource.start()
         }
     }
 
-    const stop = () => {
-        isPlaying = false;
-        PinkNoiseSource.stop();
+    const changeGain = (e) => {
+        let { value } = e.target;
+        gain.gain.value = value;
     }
 
     return (
         <div>
-            <button onClick={play}>Pink Noise Play</button>
-            <button onClick={stop}>Pink Noise Stop</button>
+            <PrimaryButton bgColor='#F472B6' onClick={handleClick}>Pink Noise</PrimaryButton>
+            <NoiseVolume changeGain={changeGain} max="0.1" />
         </div>
     )
 

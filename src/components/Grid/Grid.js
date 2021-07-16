@@ -6,6 +6,11 @@ import { PrimaryButton } from '../Button/Button'
 import { Cell } from '../Cell/Cell'
 import { SoundItem } from '../SoundItem/SoundItem'
 import './grid.css'
+import { WhiteNoise } from '../Noises/WhiteNoise';
+import { PinkNoise } from '../Noises/PinkNoise';
+import { BrownNoise } from '../Noises/BrownNoise';
+
+let audioCtx = new AudioContext();
 
 export const Grid = memo(() => {
 
@@ -26,15 +31,16 @@ export const Grid = memo(() => {
       const { icon, type, file } = item
       const complexity = index % 4 + 1
       const volume = Math.abs(Math.floor(index / 4) - 4)
+      const soundItem = {
+        icon,
+        type,
+        file,
+        volume,
+        complexity
+      }
       setCells(
         update(cells, {
-          [index]: {
-            icon: { $set: icon },
-            type: { $set: type },
-            file: { $set: file },
-            volume: { $set: volume },
-            complexity: { $set: complexity },
-          },
+          [index]: { soundItems: { $push: [soundItem] } },
         })
       )
       console.log(`${type} dropped on volume ${volume} and complexity ${complexity}`)
@@ -45,19 +51,23 @@ export const Grid = memo(() => {
   const removeItem = (index) => {
     setCells(
       update(cells, {
-        [index]: {
-          icon: { $set: null },
-          type: { $set: null },
-          file: { $set: null },
-          volume: { $set: 0 },
-          complexity: { $set: 0 },
-        },
+        [index]: { soundItems: { $set: [] } },
       })
     )
   }
 
+  const method = () => {
+    setPlaying(!isPlaying);
+    BrownNoise.mute();
+  }
+
   return (
     <div className='container'>
+      <div className='noise-wrapper'>
+        <WhiteNoise audioCtx={audioCtx} isPlaying={isPlaying} />
+        <BrownNoise audioCtx={audioCtx} isPlaying={isPlaying} />
+        <PinkNoise audioCtx={audioCtx} isPlaying={isPlaying} />
+      </div>
       <div className='grid-wrapper'>
         <div className='grid'>
           <span className='label-wrapper'>
@@ -66,16 +76,12 @@ export const Grid = memo(() => {
             <span className='label left'>Simple</span>
             <span className='label right'>Complex</span>
           </span>
-          {cells.map(({ accepts, icon, type, file, volume, complexity }, index) => (
+          {cells.map(({ accepts, soundItems }, index) => (
             <Cell
               key={index}
               cellIndex={index}
               accept={accepts}
-              icon={icon}
-              type={type}
-              file={file}
-              volume={volume}
-              complexity={complexity}
+              soundItems={soundItems}
               onDrop={(item) => handleDrop(index, item)}
               isPlaying={isPlaying}
               onDoubleClick={() => removeItem(index)}
