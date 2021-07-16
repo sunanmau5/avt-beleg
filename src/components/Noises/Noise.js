@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 export const Noise = ({ audioCtx, type }) => {
+    const [playing, setPlaying] = useState(false);
+    let isPlaying = false;
+
     let NoiseSource;
 
     const createWhiteNoise = (buffer, channelData) => {
@@ -71,13 +74,25 @@ export const Noise = ({ audioCtx, type }) => {
         gain.connect(out);
     }
 
-    createNoise(type);
+    // const play = () => {
+    //     if(!playing) {
+    //         setPlaying(true);
+    //         createNoise(type);
+    //         NoiseSource.start();
+    //     }
+    // }
 
     const play = () => {
-        NoiseSource.start();
+        if(!isPlaying) {
+            isPlaying = true;
+            createNoise(type);
+            NoiseSource.start();
+        }
     }
 
     const stop = () => {
+        // setPlaying(false);
+        isPlaying = false;
         NoiseSource.stop();
     }
 
