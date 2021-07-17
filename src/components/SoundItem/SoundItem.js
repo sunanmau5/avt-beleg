@@ -3,6 +3,7 @@ import { useDrag } from 'react-dnd'
 import './soundItem.css'
 
 export const SoundItem = memo(({ icon, type, file, style }) => {
+
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type,

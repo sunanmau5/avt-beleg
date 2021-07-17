@@ -26,6 +26,15 @@ export const Grid = memo(() => {
     { icon: '/svg/wind.svg', type: ItemTypes.WIND, file: ['sound/wind/wind_A.ogg', 'sound/wind/wind_B.ogg', 'sound/wind/wind_C.ogg', 'sound/wind/wind_D.ogg'] },
   ])
 
+  /**
+   * Callback Function to check whether a SoundItem can be dropped in the grid
+   * There can only be 1 SoundItem type for each complexity column
+   * 
+   * @param {Number} itemIndex The cell index of where the item to be dropped
+   * @param {ItemTypes} droppedType The SoundItem type of the dropped item
+   * @returns false if there are already SoundItem with the same type on the dropped column
+   *          true if otherwise
+   */
   const checkDropValidity = useCallback((itemIndex, droppedType) => {
     if ([0, 4, 8, 12].some((complexityIndex1) => complexityIndex1 === itemIndex)) {
       if (cells[0].soundItems.length > 0 && cells[0].soundItems[0].type === droppedType) return false
@@ -54,8 +63,13 @@ export const Grid = memo(() => {
     return true
   }, [cells])
 
-  const handleDrop = useCallback(
-    (index, item) => {
+  /**
+   * Callback Function to handle the drop event of a SoundItem
+   * 
+   * @param {Number} index The cell index of where the item to be dropped
+   * @param {SoundItem} item SoundItem
+   */
+  const handleDrop = useCallback((index, item) => {
       const { icon, type, file } = item
       const complexity = index % 4 + 1
       const volume = Math.abs(Math.floor(index / 4) - 4)
@@ -77,7 +91,12 @@ export const Grid = memo(() => {
     },
     [cells, checkDropValidity],
   )
-
+  
+  /**
+   * Function to remove a SoundItem from the grid
+   * 
+   * @param {Number} index The SoundItem index to be removed
+   */
   const removeItem = (index) => {
     setCells(
       update(cells, {
