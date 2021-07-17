@@ -26,26 +26,56 @@ export const Grid = memo(() => {
     { icon: '/svg/wind.svg', type: ItemTypes.WIND, file: ['sound/wind/wind_A.ogg', 'sound/wind/wind_B.ogg', 'sound/wind/wind_C.ogg', 'sound/wind/wind_D.ogg'] },
   ])
 
+  const checkDropValidity = useCallback((itemIndex, droppedType) => {
+    if ([0, 4, 8, 12].some((complexityIndex1) => complexityIndex1 === itemIndex)) {
+      if (cells[0].soundItems.length > 0 && cells[0].soundItems[0].type === droppedType) return false
+      if (cells[4].soundItems.length > 0 && cells[4].soundItems[0].type === droppedType) return false
+      if (cells[8].soundItems.length > 0 && cells[8].soundItems[0].type === droppedType) return false
+      if (cells[12].soundItems.length > 0 && cells[12].soundItems[0].type === droppedType) return false
+    }
+    if ([1, 5, 9, 13].some((complexityIndex2) => complexityIndex2 === itemIndex)) {
+      if (cells[1].soundItems.length > 0 && cells[1].soundItems[0].type === droppedType) return false
+      if (cells[5].soundItems.length > 0 && cells[5].soundItems[0].type === droppedType) return false
+      if (cells[9].soundItems.length > 0 && cells[9].soundItems[0].type === droppedType) return false
+      if (cells[13].soundItems.length > 0 && cells[13].soundItems[0].type === droppedType) return false
+    }
+    if ([2, 6, 10, 14].some((complexityIndex3) => complexityIndex3 === itemIndex)) {
+      if (cells[2].soundItems.length > 0 && cells[2].soundItems[0].type === droppedType) return false
+      if (cells[6].soundItems.length > 0 && cells[6].soundItems[0].type === droppedType) return false
+      if (cells[10].soundItems.length > 0 && cells[10].soundItems[0].type === droppedType) return false
+      if (cells[14].soundItems.length > 0 && cells[14].soundItems[0].type === droppedType) return false
+    }
+    if ([3, 7, 11, 15].some((complexityIndex3) => complexityIndex3 === itemIndex)) {
+      if (cells[3].soundItems.length > 0 && cells[3].soundItems[0].type === droppedType) return false
+      if (cells[7].soundItems.length > 0 && cells[7].soundItems[0].type === droppedType) return false
+      if (cells[11].soundItems.length > 0 && cells[11].soundItems[0].type === droppedType) return false
+      if (cells[15].soundItems.length > 0 && cells[15].soundItems[0].type === droppedType) return false
+    }
+    return true
+  }, [cells])
+
   const handleDrop = useCallback(
     (index, item) => {
       const { icon, type, file } = item
       const complexity = index % 4 + 1
       const volume = Math.abs(Math.floor(index / 4) - 4)
-      const soundItem = {
-        icon,
-        type,
-        file,
-        volume,
-        complexity
+      const soundItem = { icon, type, file, volume, complexity }
+      const canDrop = checkDropValidity(index, type)
+
+      if (cells[index].soundItems.length >= 2) {
+        console.log(`${type} can't be dropped in cell ${index}`)
+      } else if (!canDrop) {
+        console.log(`${type} already exists in complexity ${complexity}`)
+      } else {
+        setCells(
+          update(cells, {
+            [index]: { soundItems: { $push: [soundItem] } },
+          })
+        )
+        console.log(`${type} dropped on volume ${volume} and complexity ${complexity}`)
       }
-      setCells(
-        update(cells, {
-          [index]: { soundItems: { $push: [soundItem] } },
-        })
-      )
-      console.log(`${type} dropped on volume ${volume} and complexity ${complexity}`)
     },
-    [cells],
+    [cells, checkDropValidity],
   )
 
   const removeItem = (index) => {
@@ -54,11 +84,6 @@ export const Grid = memo(() => {
         [index]: { soundItems: { $set: [] } },
       })
     )
-  }
-
-  const method = () => {
-    setPlaying(!isPlaying);
-    BrownNoise.mute();
   }
 
   return (

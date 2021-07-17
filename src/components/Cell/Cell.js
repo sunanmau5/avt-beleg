@@ -50,6 +50,7 @@ export const Cell = memo(
             icon={icon}
             type={type}
             file={file}
+            style={{ width: '2.5rem', height: '2.5rem' }}
           />
         })}
         {soundItems.length > 0 && playSound(soundItems)}
