@@ -1,11 +1,11 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useEffect } from "react";
 import { useDrop } from "react-dnd";
 import ReactHowler from "react-howler";
 import { SoundItem } from "../SoundItem/SoundItem";
 import "./cell.css";
 
-export const Cell = memo(({ accept, soundItems, onDrop, isPlaying, onDoubleClick }) => {
-  
+export const Cell = memo(({ accept, soundItems, onDrop, isPlaying, onDoubleClick, setDragging }) => {
+
   const [{ isOver, canDrop }, drop] = useDrop({
     accept,
     drop: onDrop,
@@ -40,6 +40,14 @@ export const Cell = memo(({ accept, soundItems, onDrop, isPlaying, onDoubleClick
   } else if (canDrop) {
     backgroundColor = "#4B5563";
   }
+
+  useEffect(() => {
+    if (canDrop) {
+      setDragging(true)
+    } else {
+      setDragging(false)
+    }
+  }, [canDrop, setDragging])
 
   return (
     <div className="cell" ref={drop} style={{ backgroundColor }} onDoubleClick={onDoubleClick}>

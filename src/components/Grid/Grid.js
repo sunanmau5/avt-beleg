@@ -15,6 +15,7 @@ export const Grid = memo(() => {
   const [presets, setPresets] = useState([beachCampfire, heavyRain])
   const [cells, setCells] = useState(initialData)
   const [isPlaying, setPlaying] = useState(false)
+  const [isDragging, setDragging] = useState(false)
 
   const [boxes] = useState([
     { icon: '/svg/beach.svg', type: ItemTypes.BEACH, file: ['sound/beach/beach_A.ogg', 'sound/beach/beach_B.ogg', 'sound/beach/beach_C.ogg', 'sound/beach/beach_D.ogg'] },
@@ -112,12 +113,13 @@ export const Grid = memo(() => {
       </div>
       <div className='grid-wrapper'>
         <div className='grid'>
-          <span className='label-wrapper'>
+          {isDragging && <span className='label-wrapper'>
             <span className='label top'>Loud</span>
             <span className='label bottom'>Soft</span>
             <span className='label left'>Simple</span>
             <span className='label right'>Complex</span>
           </span>
+          }
           {cells.map(({ accepts, soundItems }, index) => (
             <Cell
               key={index}
@@ -127,6 +129,7 @@ export const Grid = memo(() => {
               onDrop={(item) => handleDrop(index, item)}
               isPlaying={isPlaying}
               onDoubleClick={() => removeItem(index)}
+              setDragging={setDragging}
             />
           ))}
         </div>
@@ -147,7 +150,7 @@ export const Grid = memo(() => {
           <PrimaryButton onClick={() => setCells(initialData)}>Reset</PrimaryButton>
         </div>
       </div>
-      
+
       <div className="preset-container">
         <PrimaryButton bgColor='#059669' onClick={() => setPresets([...presets, cells])}>Save Preset</PrimaryButton>
         <PrimaryButton onClick={() => setPresets([beachCampfire, heavyRain])}>Reset Presets</PrimaryButton>
