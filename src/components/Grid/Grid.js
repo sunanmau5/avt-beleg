@@ -6,9 +6,7 @@ import { PrimaryButton } from '../Button/Button'
 import { Cell } from '../Cell/Cell'
 import { SoundItem } from '../SoundItem/SoundItem'
 import './grid.css'
-import { WhiteNoise } from '../Noises/WhiteNoise';
-import { PinkNoise } from '../Noises/PinkNoise';
-import { BrownNoise } from '../Noises/BrownNoise';
+import Noise from '../Noises/Noise'
 
 let audioCtx = new AudioContext();
 
@@ -108,9 +106,9 @@ export const Grid = memo(() => {
   return (
     <div className='container'>
       <div className='noise-wrapper'>
-        <WhiteNoise audioCtx={audioCtx} />
-        <BrownNoise audioCtx={audioCtx} />
-        <PinkNoise audioCtx={audioCtx} />
+        <Noise audioCtx={audioCtx} name='White Noise' type='white' color='#949494' max='0.2' valueAtTime={0.05} />
+        <Noise audioCtx={audioCtx} name='Brown Noise' type='brown' color='#92400E' max='5' valueAtTime={1.2} />
+        <Noise audioCtx={audioCtx} name='Pink Noise' type='pink' color='#F472B6' max='0.1' valueAtTime={0.02} />
       </div>
       <div className='grid-wrapper'>
         <div className='grid'>
@@ -149,11 +147,12 @@ export const Grid = memo(() => {
           <PrimaryButton onClick={() => setCells(initialData)}>Reset</PrimaryButton>
         </div>
       </div>
+      
       <div className="preset-container">
         <PrimaryButton bgColor='#059669' onClick={() => setPresets([...presets, cells])}>Save Preset</PrimaryButton>
         <PrimaryButton onClick={() => setPresets([beachCampfire, heavyRain])}>Reset Presets</PrimaryButton>
       </div>
-      <div className="preset-table">
+      <div className="preset-container">
         {presets.map((preset, index) => (
           <PrimaryButton key={index} bgColor='#2563EB' onClick={() => setCells(preset)}>Preset {index + 1}</PrimaryButton>
         ))}

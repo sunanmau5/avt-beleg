@@ -15,16 +15,8 @@ export const SoundItem = memo(({ icon, type, file, style }) => {
     [icon, type],
   )
 
-  const soundItemStyle = style ? (
-    {
-      ...style,
-      opacity: isDragging ? 0.4 : 1
-    }) : ({
-      opacity: isDragging ? 0.4 : 1
-    })
-
   return (
-    <div className='sound-item' ref={drag} style={soundItemStyle}>
+    <div className='sound-item' ref={drag} style={{ ...style, opacity: isDragging ? 0.4 : 1 }}>
       <img src={icon} alt="icon" width="40" height="40" />
     </div>
   )
