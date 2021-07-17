@@ -1,5 +1,5 @@
 import React from 'react';
-import { NoiseVolume } from "./NoiseVolume";
+import { NoiseVolume } from "../Volume/NoiseVolume";
 import { PrimaryButton } from '../Button/Button'
 
 export const BrownNoise = React.memo(({ audioCtx }) => {

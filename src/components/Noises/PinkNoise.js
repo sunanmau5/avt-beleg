@@ -1,6 +1,6 @@
 import React from 'react'
 import { PrimaryButton } from '../Button/Button'
-import { NoiseVolume } from "./NoiseVolume";
+import { NoiseVolume } from "../Volume/NoiseVolume";
 
 export const PinkNoise = React.memo(({ audioCtx }) => {
     let isOn = false;
