@@ -70,28 +70,28 @@ export const Grid = memo(() => {
    * @param {SoundItem} item SoundItem
    */
   const handleDrop = useCallback((index, item) => {
-      const { icon, type, file } = item
-      const complexity = index % 4 + 1
-      const volume = Math.abs(Math.floor(index / 4) - 4)
-      const soundItem = { icon, type, file, volume, complexity }
-      const canDrop = checkDropValidity(index, type)
+    const { icon, type, file } = item
+    const complexity = index % 4 + 1
+    const volume = Math.abs(Math.floor(index / 4) - 4)
+    const soundItem = { icon, type, file, volume, complexity }
+    const canDrop = checkDropValidity(index, type)
 
-      if (cells[index].soundItems.length >= 2) {
-        console.log(`${type} can't be dropped in cell ${index}`)
-      } else if (!canDrop) {
-        console.log(`${type} already exists in complexity ${complexity}`)
-      } else {
-        setCells(
-          update(cells, {
-            [index]: { soundItems: { $push: [soundItem] } },
-          })
-        )
-        console.log(`${type} dropped on volume ${volume} and complexity ${complexity}`)
-      }
-    },
+    if (cells[index].soundItems.length >= 2) {
+      console.log(`${type} can't be dropped in cell ${index}`)
+    } else if (!canDrop) {
+      console.log(`${type} already exists in complexity ${complexity}`)
+    } else {
+      setCells(
+        update(cells, {
+          [index]: { soundItems: { $push: [soundItem] } },
+        })
+      )
+      console.log(`${type} dropped on volume ${volume} and complexity ${complexity}`)
+    }
+  },
     [cells, checkDropValidity],
   )
-  
+
   /**
    * Function to remove a SoundItem from the grid
    * 
@@ -108,9 +108,9 @@ export const Grid = memo(() => {
   return (
     <div className='container'>
       <div className='noise-wrapper'>
-        <WhiteNoise audioCtx={audioCtx} isPlaying={isPlaying} />
-        <BrownNoise audioCtx={audioCtx} isPlaying={isPlaying} />
-        <PinkNoise audioCtx={audioCtx} isPlaying={isPlaying} />
+        <WhiteNoise audioCtx={audioCtx} />
+        <BrownNoise audioCtx={audioCtx} />
+        <PinkNoise audioCtx={audioCtx} />
       </div>
       <div className='grid-wrapper'>
         <div className='grid'>

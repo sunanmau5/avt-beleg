@@ -2,7 +2,7 @@ import React from 'react'
 import { PrimaryButton } from '../Button/Button'
 import { NoiseVolume } from "./NoiseVolume";
 
-export const PinkNoise = ({ audioCtx, isPlaying }) => {
+export const PinkNoise = React.memo(({ audioCtx }) => {
     let isOn = false;
 
     let PinkNoiseSource;
@@ -52,15 +52,18 @@ export const PinkNoise = ({ audioCtx, isPlaying }) => {
     }
 
     const changeGain = (e) => {
-        let { value } = e.target;
-        gain.gain.value = value;
+        if (isOn) {
+            let { value } = e.target;
+            gain.gain.value = value;
+        }
     }
 
     return (
         <div>
+            {console.log("pink noise rendered")}
             <PrimaryButton bgColor='#F472B6' onClick={handleClick}>Pink Noise</PrimaryButton>
             <NoiseVolume changeGain={changeGain} max="0.1" />
         </div>
     )
 
-}
+})

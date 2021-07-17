@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NoiseVolume } from "./NoiseVolume";
 import { PrimaryButton } from '../Button/Button'
 
-export const BrownNoise = ({ audioCtx, isPlaying }) => {
+export const BrownNoise = React.memo(({ audioCtx }) => {
     let isOn = false;
 
     let BrownNoiseSource;
@@ -46,16 +46,19 @@ export const BrownNoise = ({ audioCtx, isPlaying }) => {
     }
 
     const changeGain = (e) => {
-        let { value } = e.target;
-        gain.gain.value = value;
+        if (isOn) {
+            let { value } = e.target;
+            gain.gain.value = value;
+        }
     }
 
 
     return (
         <div>
+            {console.log("brown noise rendered")}
             <PrimaryButton bgColor='#92400E' onClick={handleClick}>Brown Noise</PrimaryButton>
             <NoiseVolume changeGain={changeGain} isOn={isOn} max="5" />
         </div>
     )
 
-}
+})

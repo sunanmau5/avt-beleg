@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NoiseVolume } from "./NoiseVolume";
 import { PrimaryButton } from '../Button/Button'
 
-export const WhiteNoise = ({ audioCtx, isPlaying }) => {
+export const WhiteNoise = React.memo(({ audioCtx }) => {
     let isOn = false;
 
     let WhiteNoiseSource;
@@ -30,7 +30,6 @@ export const WhiteNoise = ({ audioCtx, isPlaying }) => {
     }
 
     const handleClick = () => {
-        console.log(isOn)
         if (isOn) {
             isOn = false;
             console.log("Deleted White Noise")
@@ -41,11 +40,14 @@ export const WhiteNoise = ({ audioCtx, isPlaying }) => {
             createNoise();
             WhiteNoiseSource.start()
         }
+        console.log("isOn", isOn)
     }
 
     const changeGain = (e) => {
-        let { value } = e.target;
-        gain.gain.value = value;
+        if (isOn) {
+            let { value } = e.target;
+            gain.gain.value = value;
+        }
     }
 
 
@@ -57,4 +59,4 @@ export const WhiteNoise = ({ audioCtx, isPlaying }) => {
         </div>
     )
 
-}
+})
