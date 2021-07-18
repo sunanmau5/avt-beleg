@@ -112,6 +112,7 @@ export const Grid = memo(() => {
         <Noise audioCtx={audioCtx} name='Pink Noise' type='pink' color='#F472B6' max='0.1' valueAtTime={0.02} />
       </div>
       <div className='grid-wrapper'>
+        <h1 className='title'>White Noise+</h1>
         <div className='grid'>
           {isDragging && <span className='label-wrapper'>
             <span className='label top'>Loud</span>

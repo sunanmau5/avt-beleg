@@ -10,6 +10,11 @@
   max-width: 40.5rem;
 }
 
+.title {
+  display: flex;
+  justify-content: center;
+}
+
 .grid {
   position: relative;
   border-radius: 20px;
