@@ -37,6 +37,15 @@ Links neben dem Grid gibt es 3 verschiedene Noises, "White  Noise", "Bworn Noise
 Zum Starten der Anwendung wird [Node.js](https://nodejs.org/en/) benötigt. Bitte der Verlinkung zur Installation folgen, falls nötig. Ist Node.js installiert. Dann kann die Anwendung über die Eingabe des Befehls `npm start` in das Terminal gestartet werden. Meist öffnet sich der Browser automatisch, sollte dies nicht der Fall sein, so ist "White Noise+" über [http://localhost:3000](http://localhost:3000) aufrufbar. \
 **Wir empfehlen den Browser Google Chrome, Chrome basierte Browser, oder Microsoft Edge zu nutzen** in anderen Browsern kann es sein, dass die Anwendung nicht richtig funktioniert.
 
+```
+git clone git@github.com:sunanmau5/avt-beleg.git (SSH) oder
+git clone https://github.com/sunanmau5/avt-beleg.git (HTTPS)
+
+npm install
+npm start
+open http://localhost:3000
+```
+
 ## Autoren 
 
 - Minh Anh Vu
@@ -45,7 +54,10 @@ Zum Starten der Anwendung wird [Node.js](https://nodejs.org/en/) benötigt. Bitt
 
 ## Projekt
 
-"White Noise+" ist im Sommer Semester 2021 als Projekt im Modul "Multimedia Audio- und Videotechnik" entstanden. Als Inspiration haben wir "WhiteNoise+" aus dem App Store genutzt.
+"White Noise+" ist im Sommer Sem ter 2021 als Projekt im Modul "Multimedia Audio- und Videotechnik" entstanden. Als Inspiration haben wir "WhiteNoise+" aus dem App Store genutzt.
+
+## Demo
+https://sunanmau5.github.io/avt-beleg/
 
 ## genutzte Technologien
 
