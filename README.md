@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# White Noise+
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Beschreibung
 
-## Available Scripts
+Die **White Noise+** ist eine Anwendung zum Erstellen beruhigender Klänge. Sie ist dazu gedacht sich mithilfer der vorhandenen Töne einen Loop zu erstellen, welcher entspannt und beruhigt. 
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+Folgend eine grobe Auflistung der Features:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Picture of the Web App Calming Sounds](public\readme_files\WN1.jpg?raw=true "Überblick über die "White Noise+" Web App")
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `1 der Grid`
 
-### `yarn test`
+Der Grid ist der Bereich in den die verschiedenen Töne hineingezogen werden können. Es ist ein 4x4 Grid. Je weiter oben ein Sound ist, desto lauter wird er, je weiter rechts desto komlexer.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `2 die Töne`
 
-### `yarn build`
+In der Anwendung finden sich derzeit 5 Töne zur Auswahl. Diese lassen sich über Drag and Drop auf das Grid ziehen und ablegen. Mit Klick auf **Play** beginnen alle im Grid befindlichen Töne zu spielen. Mit **Reset** wird das Grid zurückgesetzt.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![GIF wie Töne in Grid gezogen werden](public\readme_files\WN2.gif?raw=true "Nutzung der Töne und des Grid")
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `3 die Presets`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Über **Save Preset** lassen sich alle im Grid abgelegten Töne in der Session speichern. Es gibt 2 vorgefertigte Presets. **Reset Prestes** setzt die in der Session gespeicherten Presets zurück.
 
-### `yarn eject`
+![GIF wie Töne in Presets gespeichert werden können](public\readme_files\WN3.gif?raw=true "Nutzung der der Presets")
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### `4 die Noises`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Links neben dem Grid gibt es 3 verschiedene Noises, welche über die Web Audio API erzeugt werden und über die abgespielten Töne gelegt werden können. Über den Regler lässt sich die Intensität der Noises einstellen. Mit einem Klick auf den Namen werden sie aktiviert, mit einem erneuten Klick deaktiviert. Über den Noises werden diese Visualisiert, je nach Intensität sind die angezeigten Wellen größer oder kleiner.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![GIF wie Noises genutzt werden](public\readme_files\WN4.gif?raw=true "Nutzung der der Noises")
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Installation
 
-## Learn More
+Zum Starten der Anwendung wird [Node.js](https://nodejs.org/en/) benötigt. Bitte der Verlinkung zur Installation folgen, falls nötig. Ist Node.js installiert. Dann kann die Anwendung über die Eingabe des Befehls `npm start` in das Terminal gestartet werden. Meist öffnet sich automatisch der Browser automatisch, sollte dies nicht der Fall sein, so ist "White Noise+" über [http://localhost:3000](http://localhost:3000) aufrufbar. \
+**Wir empfehlen den Browser Google Chrome, Chrome basierte Browser, oder Microsoft Edge zu nutzen** in anderen Browsern kann es sein, dass die Anwendung nicht richtig funktioniert.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Autoren 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Minh Anh Vu \
+Sunan Regi Maunakea \
+Susann Schöbel
 
-### Code Splitting
+## Projekt
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+White Noise+ ist im Sommer Semester 2021 als Projekt im Modul "Multimedia Audio- und Videotechnik" entstanden. Als Inspiration haben wir "WhiteNoise+" aus dem App Store genutzt.
 
-### Analyzing the Bundle Size
+## genutzte Technologien
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[React](https://reactjs.org/) \
+[Web Audio AP](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) \
+[npm packages](https://www.npmjs.com/)
