@@ -2,7 +2,7 @@
 
 ## Beschreibung
 
-Die **White Noise+** ist eine Anwendung zum Erstellen beruhigender Klänge. Sie ist dazu gedacht sich mithilfer der vorhandenen Töne einen Loop zu erstellen, welcher entspannt und beruhigt. 
+Die **White Noise+** ist eine Anwendung zum Erstellen beruhigender Klänge. Sie ist dazu gedacht sich mithilfe der vorhandenen Töne einen Loop zu erstellen, welcher entspannt und beruhigt. 
 
 ## Features
 
@@ -12,7 +12,7 @@ Folgend eine grobe Auflistung der Features:
 
 ### `1 der Grid`
 
-Der Grid ist der Bereich in den die verschiedenen Töne hineingezogen werden können. Es ist ein 4x4 Grid. Je weiter oben ein Sound ist, desto lauter wird er, je weiter rechts desto komlexer.
+Der Grid ist der Bereich in den die verschiedenen Töne hineingezogen werden können. Es ist ein 4x4 Grid. Je weiter oben ein Sound ist, desto lauter wird er, je weiter rechts desto komplexer.
 
 ### `2 die Töne`
 
