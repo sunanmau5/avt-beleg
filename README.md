@@ -28,7 +28,7 @@ In der Anwendung finden sich derzeit 5 Töne zur Auswahl. Diese lassen sich übe
 
 ### `4 Die Noises`
 
-Links neben dem Grid gibt es 3 verschiedene Noises, "White  Noise", "Bworn Noise" und "Pink Noise". Diese werden über die Web Audio API erzeugt und können über die abgespielten Töne gelegt werden. Über den Regler lässt sich die Intensität der Noises einstellen. Mit einem Klick auf den Namen werden sie aktiviert, mit einem erneuten Klick deaktiviert. Über den Noises werden diese Visualisiert, je nach Intensität sind die angezeigten Wellen größer oder kleiner.
+Links neben dem Grid gibt es 3 verschiedene Noises, "White  Noise", "Brown Noise" und "Pink Noise". Diese werden über die Web Audio API erzeugt und können über die abgespielten Töne gelegt werden. Über den Regler lässt sich die Intensität der Noises einstellen. Mit einem Klick auf den Namen werden sie aktiviert, mit einem erneuten Klick deaktiviert. Über den Noises werden diese Visualisiert, je nach Intensität sind die angezeigten Wellen größer oder kleiner.
 
 ![GIF wie Noises genutzt werden](public/readme_files/WN4.gif?raw=true "Nutzung der Noises")
 
