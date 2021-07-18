@@ -8,7 +8,7 @@ Die **White Noise+** ist eine Anwendung zum Erstellen beruhigender Klänge. Sie 
 
 Folgend eine grobe Auflistung der Features:
 
-![Picture of the Web App Calming Sounds](public\readme_files\WN1.jpg?raw=true "Überblick über die "White Noise+" Web App")
+![Picture of the Web App Calming Sounds](public/readme_files/WN1.jpg?raw=true "Überblick über die 'White Noise+' Web App")
 
 ### `1 der Grid`
 
@@ -18,19 +18,19 @@ Der Grid ist der Bereich in den die verschiedenen Töne hineingezogen werden kö
 
 In der Anwendung finden sich derzeit 5 Töne zur Auswahl. Diese lassen sich über Drag and Drop auf das Grid ziehen und ablegen. Mit Klick auf **Play** beginnen alle im Grid befindlichen Töne zu spielen. Mit **Reset** wird das Grid zurückgesetzt.
 
-![GIF wie Töne in Grid gezogen werden](public\readme_files\WN2.gif?raw=true "Nutzung der Töne und des Grid")
+![GIF wie Töne in Grid gezogen werden](public/readme_files/WN2.gif?raw=true "Nutzung der Töne und des Grid")
 
 ### `3 die Presets`
 
 Über **Save Preset** lassen sich alle im Grid abgelegten Töne in der Session speichern. Es gibt 2 vorgefertigte Presets. **Reset Prestes** setzt die in der Session gespeicherten Presets zurück.
 
-![GIF wie Töne in Presets gespeichert werden können](public\readme_files\WN3.gif?raw=true "Nutzung der der Presets")
+![GIF wie Töne in Presets gespeichert werden können](public/readme_files/WN3.gif?raw=true "Nutzung der Presets")
 
 ### `4 die Noises`
 
 Links neben dem Grid gibt es 3 verschiedene Noises, welche über die Web Audio API erzeugt werden und über die abgespielten Töne gelegt werden können. Über den Regler lässt sich die Intensität der Noises einstellen. Mit einem Klick auf den Namen werden sie aktiviert, mit einem erneuten Klick deaktiviert. Über den Noises werden diese Visualisiert, je nach Intensität sind die angezeigten Wellen größer oder kleiner.
 
-![GIF wie Noises genutzt werden](public\readme_files\WN4.gif?raw=true "Nutzung der der Noises")
+![GIF wie Noises genutzt werden](public/readme_files/WN4.gif?raw=true "Nutzung der Noises")
 
 ## Installation
 
@@ -49,6 +49,7 @@ White Noise+ ist im Sommer Semester 2021 als Projekt im Modul "Multimedia Audio-
 
 ## genutzte Technologien
 
-[React](https://reactjs.org/) \
-[Web Audio AP](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) \
-[npm packages](https://www.npmjs.com/)
+- [React](https://reactjs.org/)
+- [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+- [react-dnd](https://github.com/react-dnd/react-dnd/)
+- [react-howler](https://github.com/thangngoc89/react-howler)
