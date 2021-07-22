@@ -65,3 +65,4 @@ https://sunanmau5.github.io/avt-beleg/
 - [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 - [react-dnd](https://github.com/react-dnd/react-dnd/)
 - [react-howler](https://github.com/thangngoc89/react-howler)
+- [Noises (White, Pink, Brown)](https://noisehack.com/generate-noise-web-audio-api/)
