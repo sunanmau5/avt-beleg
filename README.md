@@ -10,7 +10,7 @@ Folgend eine grobe Auflistung der Features:
 
 ![Picture of the Web App "White Noise+"](public/readme_files/WN1.jpg?raw=true "Überblick über die 'White Noise+' Web App")
 
-### `1 Der Grid`
+### `1 Das Grid`
 
 Der Grid ist der Bereich in den die verschiedenen Töne hineingezogen werden können. Es ist ein 4x4 Grid. Je weiter oben ein Sound ist, desto lauter wird er, je weiter rechts desto komplexer.
 
@@ -54,7 +54,7 @@ open http://localhost:3000
 
 ## Projekt
 
-"White Noise+" ist im Sommer Sem ter 2021 als Projekt im Modul "Multimedia Audio- und Videotechnik" entstanden. Als Inspiration haben wir "WhiteNoise+" aus dem App Store genutzt.
+"White Noise+" ist im Sommer Semester 2021 als Projekt im Modul "Multimedia Audio- und Videotechnik" entstanden. Als Inspiration haben wir "WhiteNoise+" aus dem App Store genutzt.
 
 ## Demo
 https://sunanmau5.github.io/avt-beleg/
